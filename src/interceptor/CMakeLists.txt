@@ -1,0 +1,3 @@
+add_library(nextfs_interceptor SHARED ${INTERCEPTOR_SRC})
+target_include_directories(nextfs_interceptor PRIVATE ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(nextfs_interceptor syscall_intercept_shared libnextfscommon -lrt)

@@ -1,0 +1,10 @@
+/subprojects/*
+!/subprojects/*.wrap
+.cache
+/build/
+CMakeCache.txt
+/nextfs_deps/
+/.vscode/
+/build_debug/
+*.log
+/nextfs_test/

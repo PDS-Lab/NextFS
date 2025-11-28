@@ -1,0 +1,59 @@
+# 0 trace, 1 debug, 2 info, 3 warn, 4 error, 5 critical, 6 off
+log-level: 0 # see spdlog for more log level
+
+mount-point: "/home/ysy/nextfs/mount"
+
+hot-spot-cache: 64
+
+# 32K, file block, also rdma data block size
+# block_size: 32768
+block_size: 4096
+# 4096 * 32K = 128M
+block_pool_size: 4096
+
+ipc_pool_size: 512
+ipc_channel_size: 512
+rpc_recv_head_size: 220
+
+rpc_mempool_blk_size: 4096
+rpc_mempool_capacity: 4096
+
+group-id: 13
+server-id: 1
+server-ip: 192.168.201.13
+server-port: 4010
+
+# todo
+# rdma-port-id: 
+
+in-group-node:
+  - { server-id: 1, ip: 192.168.201.13, port: 4010 }  #self
+  - { server-id: 2, ip: 192.168.201.13, port: 4020 }  
+
+out-group-peer-node:
+  - {group-id: 12, server-id: 1, ip: 192.168.201.12, port: 4010}
+  - {group-id: 12, server-id: 2, ip: 192.168.201.12, port: 4020}
+
+root_server_id: 2
+hot-spot-cache-server-id: 2
+
+dentry_path: "/home/ysy/data/node2/dentry_path"
+metadata_path: "/home/ysy/data/node2/metadata_path"
+btable_path: "//home/ysy/data/node2/btable_path"
+overflow_atable_path: "/home/ysy/data/node2/overflow_atable_path"
+file_inode_path: "/home/ysy/data/node2/file_inode.txt"
+dir_inode_path: "/home/ysy/data/node2/dir_inode.txt"
+data_block_dir: "/home/ysy/data/node2"
+
+ipc_pool_filename: "ipc_pool_filename_02"
+ipc_chnl_filename: "ipc_chnl_filename_02"
+ipc_futex_filename: "ipc_futex_shm_file_02"
+block_pool_filename: "data_block_file_02"
+
+
+
+
+
+
+
+

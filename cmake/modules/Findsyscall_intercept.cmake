@@ -1,0 +1,6 @@
+set(STATIC_CAPSTONE ON)
+set(BUILD_TESTS OFF)
+set(BUILD_EXAMPLES OFF)
+add_subdirectory(${THIRD_PARTY_DIR}/syscall_intercept)
+target_include_directories(syscall_intercept_shared PUBLIC ${THIRD_PARTY_DIR}/syscall_intercept/include)
+target_include_directories(syscall_intercept_static PUBLIC ${THIRD_PARTY_DIR}/syscall_intercept/include)
