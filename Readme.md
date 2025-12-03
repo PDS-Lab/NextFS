@@ -12,9 +12,7 @@ NextFS is a user-space local-BB file system to **support high scalability** and 
 
 Evaluation results demonstrate that NextFS significantly outperforms state-of-the-art HPC file systems in both metadata and data throughput, while scaling efficiently across large node counts.
 
-<img src="assets/image-20251203160311419.png" alt="image-20251203160311419" style="zoom:50%;" />
-
-
+![image-20251204013923713](assets/image-20251204013923713.png)
 
 ## Introduction
 
@@ -39,7 +37,7 @@ The client is provided as an interception library that captures the I/O system c
 
 Install the required system libraries:
 
-```bash
+```shell
 # capstone
 sudo apt install libcapstone-dev
 # rdma
@@ -53,13 +51,13 @@ sudo apt install libfmt-dev
 
 Update submodules:
 
-```bash
+```shell
 git submodule update --init --recursive
 ```
 
 #### Build from script
 
-```bash
+```shell
 bash build.sh rebuild
 ```
 
@@ -72,7 +70,7 @@ Then you will find the following binaries in `build` directory
 
 Config the following thins in `helper.sh` ，like: 
 
-```bash	
+```shell	
 SYSCALL_INTERCEPTOR=/home/ysy/code/NextFS/build/third_party/syscall_intercept/libsyscall_intercept.so.0
 INTERCEPTOR=/home/ysy/code/NextFS/build/src/interceptor/libnextfs_interceptor.so
 DAEMON=/home/wnj/Projects/NextFS/build/src/daemon/nextfs_daemon
@@ -89,25 +87,25 @@ mount_point=/mnt/nextfs/ysy/mount
 
 Generate config and send it to all nodes. This command uses `${CONFIG_TEMPLATE}` as the base template to generate node-specific configuration files, and then sends them to the corresponding nodes via SSH.
 
-```bash
+```shell
 bash helper.sh install_config
 ```
 
 Install the `nextfs_daemon` binary to each node:
 
-```bash
+```shell
 bash helper.sh install
 ```
 
 Run NextFS cluster daemon:
 
-```bash
+```shell
 bash helper.sh run_daemon
 ```
 
 Stop NexfFS cluster daemon:
 
-```bash
+```shell
 bash helper.sh stop_daemon
 ```
 
@@ -117,7 +115,7 @@ bash helper.sh stop_daemon
 
 The client quick-start example is  `test_all/main.cc` . Run this example:
 
-```bash
+```shell
 ./build/test_all/test_all
 ```
 
@@ -135,14 +133,14 @@ Use IOR to test file read/write performance, including both N-1 and N-N patterns
 
 The IOR test needs to run concurrently and is used together with MPI. For detailed test commands and configurations, please refer to the `mps.sh` script. You need to configure the number of slots for each node in the `hostfile` file. Like the following:
 
-```bash
+```shell
 192.168.1.14 slots=8
 192.168.1.13 slots=8
 ```
 
 Run workload:
 
-```bash
+```shell
 bash mpi.sh
 ```
 
@@ -154,6 +152,6 @@ Mdtest also needs to be used together with MPI.
 
 Run workload:
 
-```bash
+```shell
 bash mdtest.sh
 ```
