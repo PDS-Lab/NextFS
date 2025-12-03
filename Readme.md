@@ -73,9 +73,9 @@ Config the following thins in `helper.sh` ，like:
 ```shell	
 SYSCALL_INTERCEPTOR=/home/ysy/code/NextFS/build/third_party/syscall_intercept/libsyscall_intercept.so.0
 INTERCEPTOR=/home/ysy/code/NextFS/build/src/interceptor/libnextfs_interceptor.so
-DAEMON=/home/wnj/Projects/NextFS/build/src/daemon/nextfs_daemon
+DAEMON=/home/ysy/code/NextFS/build/src/daemon/nextfs_daemon
 CONFIG_TEMPLATE=./config_exp.yaml # Refer to the files in the config directory.
-DATA_PATH=/mnt/nextfs/ysydata_1
+DATA_PATH=/mnt/nextfs/ysy/data_1
 
 # node and ip list
 node_list=(s13 s12 s14 s51)
