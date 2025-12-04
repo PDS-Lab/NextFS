@@ -11,9 +11,9 @@ NextFS is a user-space local-BB file system to **support high scalability** and 
 3. Employs workload-aware data management, including **file classification mechanisms** and **shared-file semantics** to efficiently handle emerging HPC workloads.
 
 Evaluation results demonstrate that NextFS significantly outperforms state-of-the-art HPC file systems in both metadata and data throughput, while scaling efficiently across large node counts.
-
+```
 ![image-20251204013923713](assets/image-20251204013923713.png)
-
+```
 ## Introduction
 
 NextFS is architecturally divided into four major modules.
@@ -27,8 +27,9 @@ From an implementation perspective, NextFS consists of **a daemon process** and 
 The client is provided as an interception library that captures the I/O system calls issued by HPC applications. This library internally maintains the state of opened file descriptors, as well as the current read/write offsets of files. The client interacts with the local daemon through an IPC module. The IPC subsystem comprises three components—**a message dispatcher, a lock-free concurrent queue, and a data-block read/write buffer**, all of which are allocated within a shared-memory region.
  On the daemon side, the core components include the **RPC module**, the **metadata management module**, and the **data management module**, which jointly handle local I/O requests, respond to remote RPC calls, and manage the metadata and data stored on local storage devices.
 
+```
 ![image-20251203160732668](assets/image-20251203160732668.png)
-
+```
 
 
 ## Build & Run
