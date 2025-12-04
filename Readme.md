@@ -2,21 +2,8 @@
 # NextFS: A Fast, Scalable Node-Local Burst Buffer File System For Large-scale HPC Applications
 ![image-20251203152713239](assets/image-20251203152713239.png)
 
-## Summary
-
-NextFS is a user-space local-BB file system to **support high scalability** and **increase performance**.  The main features of NextFS are as follows:
-
-1. Introduces an efficient metadata management mechanism based on **network-affinity grouping** to enhance metadata scalability in large-scale scenarios.
-2. Implements a **NUMA-aware file system software stack**, integrating thread management, task scheduling and cache management to significantly boost performance for memory-intensive operations.
-3. Employs workload-aware data management, including **file classification mechanisms** and **shared-file semantics** to efficiently handle emerging HPC workloads.
-
-Evaluation results demonstrate that NextFS significantly outperforms state-of-the-art HPC file systems in both metadata and data throughput, while scaling efficiently across large node counts.
-```
-![image-20251204013923713](assets/image-20251204013923713.png)
-```
 ## Introduction
-
-NextFS is architecturally divided into four major modules.
+NextFS is a user-space local-BB file system to **support high scalability** and **increase performance**.  Its architecture comprises four core modules:
 
 -  **Network-affinity grouping module** : It groups compute nodes based on the underlying network topology and performs the initial partitioning of filesystem metadata and data at the granularity of these groups.
 - **Metadata management module** : It further manages the intra-group distribution of filesystem metadata.
@@ -26,10 +13,6 @@ NextFS is architecturally divided into four major modules.
 From an implementation perspective, NextFS consists of **a daemon process** and **a client component**.
 The client is provided as an interception library that captures the I/O system calls issued by HPC applications. This library internally maintains the state of opened file descriptors, as well as the current read/write offsets of files. The client interacts with the local daemon through an IPC module. The IPC subsystem comprises three components—**a message dispatcher, a lock-free concurrent queue, and a data-block read/write buffer**, all of which are allocated within a shared-memory region.
  On the daemon side, the core components include the **RPC module**, the **metadata management module**, and the **data management module**, which jointly handle local I/O requests, respond to remote RPC calls, and manage the metadata and data stored on local storage devices.
-
-```
-![image-20251203160732668](assets/image-20251203160732668.png)
-```
 
 
 ## Build & Run
